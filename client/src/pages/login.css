@@ -68,7 +68,7 @@
 .form-group {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 10px;
 }
 
 .form-label {
@@ -83,6 +83,7 @@
   border-radius: 8px;
   font-size: 16px;
   transition: all 0.2s ease;
+  margin-bottom: 4px;
   outline: none;
 }
 
@@ -109,7 +110,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   gap: 12px;
 }
 
@@ -180,7 +181,7 @@
 .button-loading::after {
   content: '';
   position: absolute;
-  right: 20px;
+  right: 16px;
   top: 50%;
   transform: translateY(-50%);
   width: 16px;
@@ -220,10 +221,16 @@
   text-decoration: underline;
 }
 
+.submit-button:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 18px rgba(102, 126, 234, 0.5);
+}
+
+
 /* Responsive Design */
 @media (max-width: 480px) {
   .login-card {
-    padding: 32px 24px;
+    padding: 20px 16px;
   }
 
   .login-title {
@@ -233,5 +240,27 @@
   .form-options {
     flex-direction: column;
     align-items: flex-start;
+    width: 100%;
+  }
+
+    .forgot-link {
+    margin-top: 8px;
   }
 }
+
+/* Tablet screens */
+@media (max-width: 768px) {
+  .login-card {
+    padding: 32px 24px;
+    max-width: 360px;
+  }
+
+  .login-title {
+    font-size: 30px;
+  }
+
+  .login-form {
+    gap: 20px;
+  }
+}
+
