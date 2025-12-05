@@ -7,3 +7,4 @@ Thanks to everyone who helps build and improve this project!
 
 ## 👥 Active Contributors
 - [@Chiraggksh](https://github.com/Chiraggksh) – UI Bug Fix, Signup Page and more...expecting !😉
+- [@AVBharath10](https://github.com/AVBharath10) – UI Bug Fix, Signup Page and more...expecting !😉
