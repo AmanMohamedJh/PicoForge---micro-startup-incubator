@@ -6,4 +6,4 @@ Thanks to everyone who helps build and improve this project!
 - **Aman Mohamed** – Project Lead
 
 ## 👥 Active Contributors
-(Add names as you join with your github account)
+- [@Chiraggksh](https://github.com/Chiraggksh) – UI Bug Fix, Signup Page and more...expecting !😉
