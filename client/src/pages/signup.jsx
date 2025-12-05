@@ -18,22 +18,7 @@ const Signup = () => {
   // ---------------- VALIDATIONS ----------------
   const validateEmail = (email) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 
-  const validatePassword = (pass) =>
-    /^(?=.*[A-Z])(?=.*\d).{6,}$/.test(pass);
-    name: "",
-    email: "",
-    password: "",
-    confirmPassword: "",
-    agreeToTerms: false,
-  });
-  const [errors, setErrors] = useState({});
-  const [isLoading, setIsLoading] = useState(false);
-  const [showPassword, setShowPassword] = useState(false);
-
-  const validateEmail = (email) => {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return emailRegex.test(email);
-  };
+  const validatePassword = (pass) => /^(?=.*[A-Z])(?=.*\d).{6,}$/.test(pass);
 
   const validateForm = () => {
     const newErrors = {};
@@ -46,14 +31,6 @@ const Signup = () => {
     }
 
     // Email
-    // Name validation
-    if (!formData.name.trim()) {
-      newErrors.name = "Name is required";
-    } else if (formData.name.length < 2) {
-      newErrors.name = "Name must be at least 2 characters";
-    }
-
-    // Email validation
     if (!formData.email.trim()) {
       newErrors.email = "Email is required";
     } else if (!validateEmail(formData.email)) {
@@ -64,11 +41,6 @@ const Signup = () => {
     if (!formData.password) {
       newErrors.password = "Password is required";
     } else if (!validatePassword(formData.password)) {
-    // Password validation
-    const passwordRegex = /^(?=.*[A-Z])(?=.*\d).{6,}$/;
-    if (!formData.password) {
-      newErrors.password = "Password is required";
-    } else if (!passwordRegex.test(formData.password)) {
       newErrors.password =
         "Password must be 6+ chars with 1 uppercase & 1 number";
     }
@@ -83,14 +55,6 @@ const Signup = () => {
     // Terms
     if (!formData.termsAccepted) {
       newErrors.termsAccepted = "You must accept terms to continue";
-    // Confirm password validation
-    if (formData.password !== formData.confirmPassword) {
-      newErrors.confirmPassword = "Passwords do not match";
-    }
-
-    // Terms validation
-    if (!formData.agreeToTerms) {
-      newErrors.agreeToTerms = "You must agree to the terms";
     }
 
     setErrors(newErrors);
@@ -98,9 +62,6 @@ const Signup = () => {
   };
 
   // --------------- HANDLE INPUT ----------------
-  const handleChange = (e) => {
-    const { name, value, type, checked } = e.target;
-
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
     setFormData({
@@ -117,9 +78,6 @@ const Signup = () => {
   // --------------- FORM SUBMIT ----------------
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!validateForm()) return;
-  const handleSubmit = async (e) => {
-    e.preventDefault();
 
     if (!validateForm()) {
       return;
@@ -128,13 +86,6 @@ const Signup = () => {
     setIsLoading(true);
 
     try {
-      await new Promise((res) => setTimeout(res, 1500));
-
-      console.log("Signup successful", formData);
-
-      navigate("/login");
-    } catch (err) {
-      setErrors({ general: "Signup failed. Try again." });
       // Simulate API call
       await new Promise((resolve) => setTimeout(resolve, 1500));
 
@@ -155,13 +106,13 @@ const Signup = () => {
       <div className="signup-card">
         <div className="signup-header">
           <h1 className="signup-title">Create Account</h1>
-          <p className="signup-subtitle">
-            Join the PicoForge community
-          </p>
+          <p className="signup-subtitle">Join the PicoForge community</p>
         </div>
 
         <form className="signup-form" onSubmit={handleSubmit}>
-          {errors.general && <div className="error-banner">{errors.general}</div>}
+          {errors.general && (
+            <div className="error-banner">{errors.general}</div>
+          )}
 
           {/* Full Name */}
           <div className="form-group">
@@ -174,7 +125,9 @@ const Signup = () => {
               value={formData.fullName}
               onChange={handleChange}
             />
-            {errors.fullName && <span className="error-text">{errors.fullName}</span>}
+            {errors.fullName && (
+              <span className="error-text">{errors.fullName}</span>
+            )}
           </div>
 
           {/* Email */}
@@ -202,7 +155,9 @@ const Signup = () => {
               value={formData.password}
               onChange={handleChange}
             />
-            {errors.password && <span className="error-text">{errors.password}</span>}
+            {errors.password && (
+              <span className="error-text">{errors.password}</span>
+            )}
           </div>
 
           {/* Confirm Password */}
@@ -235,8 +190,13 @@ const Signup = () => {
               />
               <span className="checkbox-text">
                 I agree to the{" "}
-                <a href="#" target="_blank">Terms of Service</a> and{" "}
-                <a href="#" target="_blank">Privacy Policy</a>
+                <a href="#" target="_blank">
+                  Terms of Service
+                </a>{" "}
+                and{" "}
+                <a href="#" target="_blank">
+                  Privacy Policy
+                </a>
               </span>
             </label>
             {errors.termsAccepted && (
