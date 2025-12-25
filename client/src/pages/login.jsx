@@ -89,7 +89,7 @@ const Login = () => {
 
   return (
     <div className="login-container">
-      <div className="login-card">
+      <div className="login-card" role="region" aria-label="Login form">
         <div className="login-header">
           <h1 className="login-title">Welcome Back</h1>
           <p className="login-subtitle">
@@ -97,9 +97,11 @@ const Login = () => {
           </p>
         </div>
 
-        <form onSubmit={handleSubmit} className="login-form">
+        <form onSubmit={handleSubmit} className="login-form" noValidate>
           {errors.general && (
-            <div className="error-banner">{errors.general}</div>
+            <div className="error-banner" role="alert" aria-live="polite">
+              {errors.general}
+            </div>
           )}
 
           <div className="form-group">
@@ -115,9 +117,15 @@ const Login = () => {
               className={`form-input ${errors.email ? "input-error" : ""}`}
               placeholder="you@example.com"
               autoComplete="email"
+              inputMode="email"
+              aria-label="Email address"
+              aria-invalid={Boolean(errors.email)}
+              aria-describedby={errors.email ? "email-error" : undefined}
             />
             {errors.email && (
-              <span className="error-text">{errors.email}</span>
+              <span id="email-error" className="error-text" role="alert">
+                {errors.email}
+              </span>
             )}
           </div>
 
@@ -134,9 +142,14 @@ const Login = () => {
               className={`form-input ${errors.password ? "input-error" : ""}`}
               placeholder="Enter your password"
               autoComplete="current-password"
+              aria-label="Password"
+              aria-invalid={Boolean(errors.password)}
+              aria-describedby={errors.password ? "password-error" : undefined}
             />
             {errors.password && (
-              <span className="error-text">{errors.password}</span>
+              <span id="password-error" className="error-text" role="alert">
+                {errors.password}
+              </span>
             )}
           </div>
 
@@ -144,10 +157,12 @@ const Login = () => {
             <label className="checkbox-label">
               <input
                 type="checkbox"
+                id="rememberMe"
                 name="rememberMe"
                 checked={formData.rememberMe}
                 onChange={handleChange}
                 className="checkbox-input"
+                aria-label="Remember me"
               />
               <span className="checkbox-text">Remember me</span>
             </label>
@@ -160,6 +175,7 @@ const Login = () => {
             type="submit"
             disabled={isLoading}
             className={`submit-button ${isLoading ? "button-loading" : ""}`}
+            aria-busy={isLoading}
           >
             {isLoading ? "Signing in..." : "Sign In"}
           </button>
