@@ -242,8 +242,8 @@ Feel free to fork the repo and submit pull requests. Open issues for bugs or fea
 
 ## 📸 Screenshots
 
-![Login Desktop](screenshots/login.PNG)
-![Login Desktop](screenshots/signup.PNG)
+![Login Desktop](screenshots/login.png)
+![Login Desktop](screenshots/signup.png)
 
 ---
 
