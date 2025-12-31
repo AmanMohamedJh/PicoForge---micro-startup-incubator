@@ -1,9 +1,10 @@
 import React from "react";
+import Hero from '../components/homepage/Hero';
+
 
 const Homepage = () => (
-  <div style={{ textAlign: "center", marginTop: "50px" }}>
-    <h1>Micro Startup Incubator</h1>
-    <p>Coming soon…</p>
+  <div >
+    <Hero/>
   </div>
 );
 

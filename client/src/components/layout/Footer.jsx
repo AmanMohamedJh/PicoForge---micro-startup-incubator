@@ -33,7 +33,7 @@ const Footer = () => {
   return (
     <footer className="relative bg-dark-primary border-t border-border-default">
       {/* Decorative gradient */}
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-accent-purple/5 to-transparent pointer-events-none" />
+      <div className="absolute inset-0 bg-linear-to-b from-transparent via-accent-purple/5 to-transparent pointer-events-none" />
       
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-20">
         {/* Main Footer Content */}
