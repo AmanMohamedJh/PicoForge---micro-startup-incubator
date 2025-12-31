@@ -187,6 +187,15 @@ a:hover {
   color: var(--color-accent-blue);
 }
 
+/* Button-like links shouldn't inherit link styles */
+a.inline-flex {
+  color: inherit;
+}
+
+a.inline-flex:hover {
+  color: inherit;
+}
+
 /* Buttons */
 button {
   font-family: inherit;
