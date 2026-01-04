@@ -75,7 +75,7 @@ const Header = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <Link to="/" className="flex-shrink-0 group">
+          <Link to="/" className="shrink-0 group">
             <div className="relative px-3 py-1.5 border-2 border-text-tertiary rounded-lg group-hover:border-text-primary transition-all duration-300">
               <div className="absolute inset-0.5 border border-text-tertiary/50 rounded-md group-hover:border-text-primary/50 transition-all duration-300 pointer-events-none" />
               <span className="relative text-lg font-bold text-text-primary font-display tracking-tight">
@@ -184,7 +184,7 @@ const Header = () => {
               </Link>
               <Link
                 to="/signup"
-                className="inline-flex items-center px-5 py-1.5 bg-gradient-to-r from-accent-purple to-accent-purple-dark text-white text-sm font-semibold rounded-lg shadow-lg shadow-accent-purple/30 hover:shadow-accent-purple/50 hover:-translate-y-0.5 transition-all duration-300"
+                className="inline-flex items-center px-5 py-1.5 bg-linear-to-r from-accent-purple to-accent-purple-dark text-white text-sm font-semibold rounded-lg shadow-lg shadow-accent-purple/30 hover:shadow-accent-purple/50 hover:-translate-y-0.5 transition-all duration-300"
               >
                 Get Started
               </Link>
@@ -268,7 +268,7 @@ const Header = () => {
                 <Link
                   to="/signup"
                   onClick={() => setMobileMenuOpen(false)}
-                  className="block w-full px-4 py-2 text-center bg-gradient-to-r from-accent-purple to-accent-purple-dark text-white text-sm font-semibold rounded-lg"
+                  className="block w-full px-4 py-2 text-center bg-linear-to-r from-accent-purple to-accent-purple-dark text-white text-sm font-semibold rounded-lg"
                 >
                   Get Started
                 </Link>
