@@ -98,7 +98,7 @@ const Signup = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-dark-primary via-dark-secondary to-dark-tertiary flex items-center justify-center p-4 sm:p-6 lg:p-8 relative overflow-hidden">
+    <div className="min-h-screen bg-linear-to-br from-dark-primary via-dark-secondary to-dark-tertiary flex items-center justify-center p-4 sm:p-6 lg:p-8 relative overflow-hidden">
       {/* Background Glow Effects */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-0 right-0 w-96 h-96 bg-accent-purple/10 rounded-full blur-[120px] animate-pulse" />
@@ -311,7 +311,7 @@ const Signup = () => {
             <button
               type="submit"
               disabled={isLoading}
-              className={`w-full py-3 px-6 bg-gradient-to-r from-accent-purple to-accent-purple-dark text-white font-semibold rounded-lg shadow-lg shadow-accent-purple/30 hover:shadow-accent-purple/40 hover:-translate-y-0.5 transition-all duration-300 disabled:opacity-60 disabled:cursor-not-allowed disabled:hover:translate-y-0 mt-4 ${
+              className={`w-full py-3 px-6 bg-linear-to-r from-accent-purple to-accent-purple-dark text-white font-semibold rounded-lg shadow-lg shadow-accent-purple/30 hover:shadow-accent-purple/40 hover:-translate-y-0.5 transition-all duration-300 disabled:opacity-60 disabled:cursor-not-allowed disabled:hover:translate-y-0 mt-4 ${
                 isLoading ? "relative" : ""
               }`}
             >
