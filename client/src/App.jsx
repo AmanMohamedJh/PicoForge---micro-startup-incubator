@@ -1,35 +1,63 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { Routes, Route, Navigate } from "react-router-dom";
+import Layout from "./components/layout/Layout";
+import Homepage from "./pages/Homepage";
+import Login from "./pages/login";
+import Signup from "./pages/signup";
+import SubmitIdea from "./pages/SubmitIdea";
+import Ideas from "./pages/Ideas";
+import IdeaDetail from "./pages/IdeaDetail";
+import "./index.css";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [count, setCount] = useState(0);
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <Routes>
+      {/* Homepage with layout */}
+      <Route
+        path="/"
+        element={
+          <Layout>
+            <Homepage />
+          </Layout>
+        }
+      />
+
+      {/* Auth pages without layout */}
+      <Route path="/login" element={<Login />} />
+      <Route path="/signup" element={<Signup />} />
+
+      {/* Idea submission + explore */}
+      <Route
+        path="/submit-idea"
+        element={
+          <Layout>
+            <SubmitIdea />
+          </Layout>
+        }
+      />
+      <Route
+        path="/ideas"
+        element={
+          <Layout>
+            <Ideas />
+          </Layout>
+        }
+      />
+      <Route
+        path="/ideas/:id"
+        element={
+          <Layout>
+            <IdeaDetail />
+          </Layout>
+        }
+      />
+
+      {/* Aliases for existing homepage links */}
+      <Route path="/submit" element={<Navigate to="/submit-idea" replace />} />
+      <Route path="/explore" element={<Navigate to="/ideas" replace />} />
+    </Routes>
+  );
 }
 
-export default App
+export default App;
