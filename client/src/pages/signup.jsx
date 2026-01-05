@@ -40,6 +40,7 @@ const Signup = () => {
     } else if (!validatePassword(formData.password)) {
       newErrors.password =
         "Password must be 6+ chars with 1 uppercase & 1 number";
+      newErrors.password = "Password must be 6+ chars with 1 uppercase & 1 number";
     }
 
     if (!formData.confirmPassword) {
@@ -92,6 +93,11 @@ const Signup = () => {
       setErrors({
         general: error?.message || "Signup failed. Please try again.",
       });
+      await new Promise((resolve) => setTimeout(resolve, 1500));
+      console.log("Signup successful:", formData);
+      navigate("/login");
+    } catch (error) {
+      setErrors({ general: "Signup failed. Please try again." });
     } finally {
       setIsLoading(false);
     }
@@ -106,6 +112,11 @@ const Signup = () => {
           className="absolute bottom-0 left-0 w-96 h-96 bg-accent-cyan/10 rounded-full blur-[120px] animate-pulse"
           style={{ animationDelay: "1s" }}
         />
+    <div className="min-h-screen bg-gradient-to-br from-dark-primary via-dark-secondary to-dark-tertiary flex items-center justify-center p-4 sm:p-6 lg:p-8 relative overflow-hidden">
+      {/* Background Glow Effects */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute top-0 right-0 w-96 h-96 bg-accent-purple/10 rounded-full blur-[120px] animate-pulse" />
+        <div className="absolute bottom-0 left-0 w-96 h-96 bg-accent-cyan/10 rounded-full blur-[120px] animate-pulse" style={{ animationDelay: '1s' }} />
       </div>
 
       {/* Signup Card */}
@@ -129,6 +140,7 @@ const Signup = () => {
                 className="bg-error/10 border border-error/30 text-error rounded-lg p-3 text-sm animate-slide-down"
                 role="alert"
               >
+              <div className="bg-error/10 border border-error/30 text-error rounded-lg p-3 text-sm animate-slide-down" role="alert">
                 {errors.general}
               </div>
             )}
@@ -139,6 +151,7 @@ const Signup = () => {
                 htmlFor="fullName"
                 className="block text-sm font-semibold text-text-primary"
               >
+              <label htmlFor="fullName" className="block text-sm font-semibold text-text-primary">
                 Full Name
               </label>
               <input
@@ -149,6 +162,7 @@ const Signup = () => {
                 onChange={handleChange}
                 className={`w-full px-4 py-2.5 bg-dark-tertiary border ${
                   errors.fullName ? "border-error" : "border-border-default"
+                  errors.fullName ? 'border-error' : 'border-border-default'
                 } rounded-lg text-text-primary placeholder-text-tertiary focus:outline-none focus:ring-2 focus:ring-accent-purple focus:border-transparent transition-all duration-200`}
                 placeholder="Enter your full name"
                 autoComplete="name"
@@ -157,6 +171,7 @@ const Signup = () => {
                 <p className="text-error text-xs mt-1 animate-slide-down">
                   {errors.fullName}
                 </p>
+                <p className="text-error text-xs mt-1 animate-slide-down">{errors.fullName}</p>
               )}
             </div>
 
@@ -166,6 +181,7 @@ const Signup = () => {
                 htmlFor="email"
                 className="block text-sm font-semibold text-text-primary"
               >
+              <label htmlFor="email" className="block text-sm font-semibold text-text-primary">
                 Email Address
               </label>
               <input
@@ -176,6 +192,7 @@ const Signup = () => {
                 onChange={handleChange}
                 className={`w-full px-4 py-2.5 bg-dark-tertiary border ${
                   errors.email ? "border-error" : "border-border-default"
+                  errors.email ? 'border-error' : 'border-border-default'
                 } rounded-lg text-text-primary placeholder-text-tertiary focus:outline-none focus:ring-2 focus:ring-accent-purple focus:border-transparent transition-all duration-200`}
                 placeholder="you@example.com"
                 autoComplete="email"
@@ -184,6 +201,7 @@ const Signup = () => {
                 <p className="text-error text-xs mt-1 animate-slide-down">
                   {errors.email}
                 </p>
+                <p className="text-error text-xs mt-1 animate-slide-down">{errors.email}</p>
               )}
             </div>
 
@@ -193,6 +211,7 @@ const Signup = () => {
                 htmlFor="password"
                 className="block text-sm font-semibold text-text-primary"
               >
+              <label htmlFor="password" className="block text-sm font-semibold text-text-primary">
                 Password
               </label>
               <div className="relative">
@@ -204,6 +223,7 @@ const Signup = () => {
                   onChange={handleChange}
                   className={`w-full px-4 py-2.5 pr-12 bg-dark-tertiary border ${
                     errors.password ? "border-error" : "border-border-default"
+                    errors.password ? 'border-error' : 'border-border-default'
                   } rounded-lg text-text-primary placeholder-text-tertiary focus:outline-none focus:ring-2 focus:ring-accent-purple focus:border-transparent transition-all duration-200`}
                   placeholder="Create a password"
                   autoComplete="new-password"
@@ -221,6 +241,7 @@ const Signup = () => {
                 <p className="text-error text-xs mt-1 animate-slide-down">
                   {errors.password}
                 </p>
+                <p className="text-error text-xs mt-1 animate-slide-down">{errors.password}</p>
               )}
             </div>
 
@@ -230,6 +251,7 @@ const Signup = () => {
                 htmlFor="confirmPassword"
                 className="block text-sm font-semibold text-text-primary"
               >
+              <label htmlFor="confirmPassword" className="block text-sm font-semibold text-text-primary">
                 Confirm Password
               </label>
               <div className="relative">
@@ -243,6 +265,7 @@ const Signup = () => {
                     errors.confirmPassword
                       ? "border-error"
                       : "border-border-default"
+                    errors.confirmPassword ? 'border-error' : 'border-border-default'
                   } rounded-lg text-text-primary placeholder-text-tertiary focus:outline-none focus:ring-2 focus:ring-accent-purple focus:border-transparent transition-all duration-200`}
                   placeholder="Confirm your password"
                   autoComplete="new-password"
@@ -266,6 +289,13 @@ const Signup = () => {
                 <p className="text-error text-xs mt-1 animate-slide-down">
                   {errors.confirmPassword}
                 </p>
+                  aria-label={showConfirmPassword ? "Hide password" : "Show password"}
+                >
+                  {showConfirmPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+                </button>
+              </div>
+              {errors.confirmPassword && (
+                <p className="text-error text-xs mt-1 animate-slide-down">{errors.confirmPassword}</p>
               )}
             </div>
 
@@ -281,6 +311,7 @@ const Signup = () => {
                     errors.termsAccepted
                       ? "border-error"
                       : "border-border-default"
+                    errors.termsAccepted ? 'border-error' : 'border-border-default'
                   } bg-dark-tertiary text-accent-purple focus:ring-2 focus:ring-accent-purple focus:ring-offset-0 cursor-pointer transition-all`}
                 />
                 <span className="text-sm text-text-body group-hover:text-text-primary transition-colors leading-snug">
@@ -296,6 +327,11 @@ const Signup = () => {
                     href="#"
                     className="text-accent-purple hover:text-accent-purple-light font-medium transition-colors"
                   >
+                  <a href="#" className="text-accent-purple hover:text-accent-purple-light font-medium transition-colors">
+                    Terms of Service
+                  </a>{" "}
+                  and{" "}
+                  <a href="#" className="text-accent-purple hover:text-accent-purple-light font-medium transition-colors">
                     Privacy Policy
                   </a>
                 </span>
@@ -304,6 +340,7 @@ const Signup = () => {
                 <p className="text-error text-xs animate-slide-down">
                   {errors.termsAccepted}
                 </p>
+                <p className="text-error text-xs animate-slide-down">{errors.termsAccepted}</p>
               )}
             </div>
 
@@ -313,6 +350,8 @@ const Signup = () => {
               disabled={isLoading}
               className={`w-full py-3 px-6 bg-linear-to-r from-accent-purple to-accent-purple-dark text-white font-semibold rounded-lg shadow-lg shadow-accent-purple/30 hover:shadow-accent-purple/40 hover:-translate-y-0.5 transition-all duration-300 disabled:opacity-60 disabled:cursor-not-allowed disabled:hover:translate-y-0 mt-4 ${
                 isLoading ? "relative" : ""
+              className={`w-full py-3 px-6 bg-gradient-to-r from-accent-purple to-accent-purple-dark text-white font-semibold rounded-lg shadow-lg shadow-accent-purple/30 hover:shadow-accent-purple/40 hover:-translate-y-0.5 transition-all duration-300 disabled:opacity-60 disabled:cursor-not-allowed disabled:hover:translate-y-0 mt-4 ${
+                isLoading ? 'relative' : ''
               }`}
             >
               {isLoading ? (
@@ -324,6 +363,7 @@ const Signup = () => {
                 </>
               ) : (
                 "Sign Up"
+                'Sign Up'
               )}
             </button>
           </form>
@@ -334,6 +374,9 @@ const Signup = () => {
               Already have an account?{" "}
               <Link
                 to="/login"
+              Already have an account?{' '}
+              <Link 
+                to="/login" 
                 className="text-accent-purple hover:text-accent-purple-light font-semibold transition-colors"
               >
                 Log in
@@ -346,4 +389,5 @@ const Signup = () => {
   );
 };
 
+export default Signup;
 export default Signup;

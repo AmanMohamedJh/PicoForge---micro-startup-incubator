@@ -72,6 +72,15 @@ const Login = () => {
       setErrors({
         general: error?.message || "Login failed. Please try again.",
       });
+      await new Promise((resolve) => setTimeout(resolve, 1500));
+      console.log("Login successful:", formData);
+      localStorage.setItem("isAuthenticated", "true");
+      if (formData.rememberMe) {
+        localStorage.setItem("userEmail", formData.email);
+      }
+      navigate("/");
+    } catch (error) {
+      setErrors({ general: "Login failed. Please try again." });
     } finally {
       setIsLoading(false);
     }
@@ -86,6 +95,11 @@ const Login = () => {
           className="absolute bottom-0 left-0 w-96 h-96 bg-accent-blue/10 rounded-full blur-[120px] animate-pulse"
           style={{ animationDelay: "1s" }}
         />
+    <div className="min-h-screen bg-gradient-to-br from-dark-primary via-dark-secondary to-dark-tertiary flex items-center justify-center p-4 sm:p-6 lg:p-8 relative overflow-hidden">
+      {/* Background Glow Effects */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute top-0 right-0 w-96 h-96 bg-accent-purple/10 rounded-full blur-[120px] animate-pulse" />
+        <div className="absolute bottom-0 left-0 w-96 h-96 bg-accent-blue/10 rounded-full blur-[120px] animate-pulse" style={{ animationDelay: '1s' }} />
       </div>
 
       {/* Login Card */}
@@ -109,6 +123,7 @@ const Login = () => {
                 className="bg-error/10 border border-error/30 text-error rounded-lg p-3 text-sm animate-slide-down"
                 role="alert"
               >
+              <div className="bg-error/10 border border-error/30 text-error rounded-lg p-3 text-sm animate-slide-down" role="alert">
                 {errors.general}
               </div>
             )}
@@ -119,6 +134,7 @@ const Login = () => {
                 htmlFor="email"
                 className="block text-sm font-semibold text-text-primary"
               >
+              <label htmlFor="email" className="block text-sm font-semibold text-text-primary">
                 Email Address
               </label>
               <input
@@ -129,6 +145,7 @@ const Login = () => {
                 onChange={handleChange}
                 className={`w-full px-4 py-2.5 bg-dark-tertiary border ${
                   errors.email ? "border-error" : "border-border-default"
+                  errors.email ? 'border-error' : 'border-border-default'
                 } rounded-lg text-text-primary placeholder-text-tertiary focus:outline-none focus:ring-2 focus:ring-accent-purple focus:border-transparent transition-all duration-200`}
                 placeholder="you@example.com"
                 autoComplete="email"
@@ -137,6 +154,7 @@ const Login = () => {
                 <p className="text-error text-xs mt-1 animate-slide-down">
                   {errors.email}
                 </p>
+                <p className="text-error text-xs mt-1 animate-slide-down">{errors.email}</p>
               )}
             </div>
 
@@ -146,6 +164,7 @@ const Login = () => {
                 htmlFor="password"
                 className="block text-sm font-semibold text-text-primary"
               >
+              <label htmlFor="password" className="block text-sm font-semibold text-text-primary">
                 Password
               </label>
               <input
@@ -156,6 +175,7 @@ const Login = () => {
                 onChange={handleChange}
                 className={`w-full px-4 py-2.5 bg-dark-tertiary border ${
                   errors.password ? "border-error" : "border-border-default"
+                  errors.password ? 'border-error' : 'border-border-default'
                 } rounded-lg text-text-primary placeholder-text-tertiary focus:outline-none focus:ring-2 focus:ring-accent-purple focus:border-transparent transition-all duration-200`}
                 placeholder="Enter your password"
                 autoComplete="current-password"
@@ -164,6 +184,7 @@ const Login = () => {
                 <p className="text-error text-xs mt-1 animate-slide-down">
                   {errors.password}
                 </p>
+                <p className="text-error text-xs mt-1 animate-slide-down">{errors.password}</p>
               )}
             </div>
 
@@ -184,6 +205,8 @@ const Login = () => {
               </label>
               <Link
                 to="/forgot-password"
+              <Link 
+                to="/forgot-password" 
                 className="text-sm text-accent-purple hover:text-accent-purple-light font-medium transition-colors"
               >
                 Forgot password?
@@ -196,6 +219,8 @@ const Login = () => {
               disabled={isLoading}
               className={`w-full py-3 px-6 bg-linear-to-r from-accent-purple to-accent-purple-dark text-white font-semibold rounded-lg shadow-lg shadow-accent-purple/30 hover:shadow-accent-purple/40 hover:-translate-y-0.5 transition-all duration-300 disabled:opacity-60 disabled:cursor-not-allowed disabled:hover:translate-y-0 ${
                 isLoading ? "relative" : ""
+              className={`w-full py-3 px-6 bg-gradient-to-r from-accent-purple to-accent-purple-dark text-white font-semibold rounded-lg shadow-lg shadow-accent-purple/30 hover:shadow-accent-purple/40 hover:-translate-y-0.5 transition-all duration-300 disabled:opacity-60 disabled:cursor-not-allowed disabled:hover:translate-y-0 ${
+                isLoading ? 'relative' : ''
               }`}
             >
               {isLoading ? (
@@ -207,6 +232,7 @@ const Login = () => {
                 </>
               ) : (
                 "Sign In"
+                'Sign In'
               )}
             </button>
           </form>
@@ -217,6 +243,9 @@ const Login = () => {
               Don't have an account?{" "}
               <Link
                 to="/signup"
+              Don't have an account?{' '}
+              <Link 
+                to="/signup" 
                 className="text-accent-purple hover:text-accent-purple-light font-semibold transition-colors"
               >
                 Sign up
@@ -229,4 +258,5 @@ const Login = () => {
   );
 };
 
+export default Login;
 export default Login;
